@@ -179,3 +179,9 @@ body {
     border-width: 0.05em;
     border-radius: 0.3em;
 }
+
+.debug {
+    background-color: black;
+    border-width: 2px;
+    color: #000;
+}

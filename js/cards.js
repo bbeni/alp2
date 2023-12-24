@@ -120,7 +120,12 @@ function touchMove(e) {
     let next = others.find(card => {
         return y <= card.offsetTop + card.offsetHeight /2;
     })
-    cardTable.insertBefore(draggingCard, next);}
+    cardTable.insertBefore(draggingCard, next);
+}
+
+function touchMove2(e) {
+    setTimeout(() => this.classList.add("debug"), 0);
+}
 
 
 

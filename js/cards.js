@@ -137,11 +137,13 @@ function bindDragEvents() {
         card.removeEventListener("dragend", dragEnd);
         card.removeEventListener("touchstart", touchStart);
         card.removeEventListener("touchend", touchEnd);
+        card.removeEventListener("touchmove", touchMove2);
 
         card.addEventListener("dragstart", dragStart);
         card.addEventListener("dragend", dragEnd);
         card.addEventListener("touchstart", touchStart);
         card.addEventListener("touchend", touchEnd);
+        card.addEventListener("touchmove", touchMove2);
     });
 }
 

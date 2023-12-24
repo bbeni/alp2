@@ -54,7 +54,7 @@ body {
     padding-right: 1em;
     padding: 0.5em;
     height: 2.6em;
-    width: 340px;
+    width: min(90vw, 340px);
     background-color: rgb(255, 255, 255, 0.6);
     display: flex;
     align-items: center;
@@ -88,7 +88,7 @@ body {
     border: 0px;
     justify-self: center;
     display: flex;
-    width: 300px;
+    width: min(75vw, 300px);
     bottom: 1em;
     background-color: (125, 175, 141, 1);
 }
@@ -99,7 +99,7 @@ body {
     border: 0px;
     justify-self: center;
     display: flex;
-    width: 350px;
+    width: min(90vw, 350px);
     bottom: 1em;
     background-color: (125, 175, 141, 1);
 }
@@ -129,7 +129,7 @@ body {
     bottom: 0;
     display: flex;
     flex-direction: column;
-    width: 350px;
+    width: min(90vw, 350px);
     align-items:end;
     justify-content: flex-end;
     border-radius: 0.5em;
@@ -151,7 +151,7 @@ body {
     font-size: larger;
     border: 0cap;
     border-radius: 0.3em;
-    width: 210px;
+    width: min(50vw, 210px);
 }
 
 #addPage textarea {
@@ -161,7 +161,7 @@ body {
     border-radius: 0.3em;
     resize: vertical;
     height: 2.2em;
-    width:210px;
+    width:min(50vw, 210px);
 }
 
 
@@ -170,7 +170,7 @@ body {
 }
 
 #trashArea {
-    width: 50px;
+    width: min(10vw, 50px);
     display: flex;
     justify-content: center;
     align-items: center;

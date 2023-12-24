@@ -76,6 +76,19 @@ function addCard() {
 
 }
 
+// event listener for inserting the card into the table while dragging
+const changeCardTable = (e) => {
+    e.preventDefault();
+    const draggingCard = cardTable.querySelector(".dragging")
+
+    const others = [...cardTable.querySelectorAll(".todo-card:not(.dragging)")];
+    
+    let next = others.find(card => {
+        return e.clientY + window.scrollY <= card.offsetTop + card.offsetHeight /2;
+    })
+    cardTable.insertBefore(draggingCard, next);
+}
+
 
 
 // Event listener functions
@@ -94,21 +107,21 @@ function touchStart(e) {
 }
 
 function touchEnd(e) {
-    dragEnd.call(this, e.changedTouches[0]);
-}
-
-// event listener for inserting the card into the table while dragging
-const changeCardTable = (e) => {
-    e.preventDefault();
-    const draggingCard = cardTable.querySelector(".dragging")
-
-    const others = [...cardTable.querySelectorAll(".todo-card:not(.dragging)")];
+    const draggingCard = cardTable.querySelector(".dragging");
+    let rect = trashArea.getBoundingClientRect();
+    let y = e.changedTouches[0].clientY;
+    let x = e.changedTouches[0].clientX;
     
-    let next = others.find(card => {
-        return e.clientY + window.scrollY <= card.offsetTop + card.offsetHeight /2;
-    })
-    cardTable.insertBefore(draggingCard, next);
+    if (rect.left <= x && rect.right >= x &&
+         rect.top <= y && rect.bottom >= y) {
+        console.log(rect);
+        if (draggingCard) {
+            draggingCard.remove();
+        }
+    }
 }
+
+
 
 function touchMove(e) {
     e.preventDefault(); // Prevent default scrolling behavior
@@ -123,12 +136,6 @@ function touchMove(e) {
     cardTable.insertBefore(draggingCard, next);
 }
 
-function touchMove2(e) {
-    setTimeout(() => this.classList.add("debug"), 0);
-}
-
-
-
 function bindDragEvents() {
     const todoCards = document.querySelectorAll(".todo-card");
 
@@ -137,13 +144,13 @@ function bindDragEvents() {
         card.removeEventListener("dragend", dragEnd);
         card.removeEventListener("touchstart", touchStart);
         card.removeEventListener("touchend", touchEnd);
-        card.removeEventListener("touchmove", touchMove2);
+        card.removeEventListener("touchmove", touchMove);
 
         card.addEventListener("dragstart", dragStart);
         card.addEventListener("dragend", dragEnd);
         card.addEventListener("touchstart", touchStart);
         card.addEventListener("touchend", touchEnd);
-        card.addEventListener("touchmove", touchMove2);
+        card.addEventListener("touchmove", touchMove);
     });
 }
 

@@ -101,19 +101,26 @@ function touchEnd(e) {
 const changeCardTable = (e) => {
     e.preventDefault();
     const draggingCard = cardTable.querySelector(".dragging")
+
     const others = [...cardTable.querySelectorAll(".todo-card:not(.dragging)")];
     
     let next = others.find(card => {
         return e.clientY + window.scrollY <= card.offsetTop + card.offsetHeight /2;
     })
     cardTable.insertBefore(draggingCard, next);
-
 }
 
 function touchMove(e) {
     e.preventDefault(); // Prevent default scrolling behavior
-    changeCardTable.call(this, e.touches[0])
-}
+    var y = e.touches[0].clientY;
+    const draggingCard = cardTable.querySelector(".dragging")
+
+    const others = [...cardTable.querySelectorAll(".todo-card:not(.dragging)")];
+    
+    let next = others.find(card => {
+        return y <= card.offsetTop + card.offsetHeight /2;
+    })
+    cardTable.insertBefore(draggingCard, next);}
 
 
 

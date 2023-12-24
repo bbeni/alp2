@@ -6,6 +6,8 @@ if (localStorage.length == 0) {
     addCardToStorage(2, "Collect leaves", "fun but not so important..");
 }
 
+const cardTable = document.querySelector(".card-table")
+
 function genCardsFromStorage() {
     var keys = [];
     for (var i = 0; i < localStorage.length; i++) {
@@ -161,9 +163,9 @@ trashArea.addEventListener("touchmove", touchMoved);
 trashArea.addEventListener("touchend", deletedCard);
 
 
+
 cardTable.addEventListener("dragover", changeCardTable);
 cardTable.addEventListener("touchmove", changeCardTableTouch);
-
 
 
 // initialize stuff

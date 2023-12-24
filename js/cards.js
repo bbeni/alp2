@@ -110,19 +110,7 @@ const changeCardTable = (e) => {
 
 function touchMove(e) {
     e.preventDefault(); // Prevent default scrolling behavior
-    const touch = e.touches[0];
-    // You may need to adjust this logic for touch coordinates
-    const draggingCard = cardTable.querySelector(".dragging")
-    const others = [...cardTable.querySelectorAll(".todo-card:not(.dragging)")];
-
-    let next = others.find(card => {
-        const cardRect = card.getBoundingClientRect();
-        return touch.clientY <= cardRect.top + window.scrollY + cardRect.height / 2;
-    });
-
-    if (draggingCard) {
-        cardTable.insertBefore(draggingCard, next);
-    }
+    changeCardTable.call(this, e.touches[0])
 }
 
 
@@ -135,13 +123,11 @@ function bindDragEvents() {
         card.removeEventListener("dragend", dragEnd);
         card.removeEventListener("touchstart", touchStart);
         card.removeEventListener("touchend", touchEnd);
-        card.removeEventListener("touchmove", touchMove);
 
         card.addEventListener("dragstart", dragStart);
         card.addEventListener("dragend", dragEnd);
         card.addEventListener("touchstart", touchStart);
         card.addEventListener("touchend", touchEnd);
-        card.addEventListener("touchmove", touchMove);
     });
 }
 
@@ -170,6 +156,7 @@ function changeCardTableTouch(e) {
 trashArea = document.getElementById("trashArea");
 trashArea.addEventListener("dragover", toTrashMoved);
 trashArea.addEventListener("drop", deletedCard);
+
 trashArea.addEventListener("touchmove", touchMoved);
 trashArea.addEventListener("touchend", deletedCard);
 

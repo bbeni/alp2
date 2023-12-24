@@ -108,6 +108,7 @@ function touchStart(e) {
 
 function touchEnd(e) {
     const draggingCard = cardTable.querySelector(".dragging");
+    if (!draggingCard) return;
     let rect = trashArea.getBoundingClientRect();
     let y = e.changedTouches[0].clientY;
     let x = e.changedTouches[0].clientX;
@@ -118,6 +119,8 @@ function touchEnd(e) {
         if (draggingCard) {
             draggingCard.remove();
         }
+    } else {
+        this.classList.remove("dragging");
     }
 }
 
@@ -131,7 +134,7 @@ function touchMove(e) {
     const others = [...cardTable.querySelectorAll(".todo-card:not(.dragging)")];
     
     let next = others.find(card => {
-        return y <= card.offsetTop + card.offsetHeight /2;
+        return y + window.scrollY <= card.offsetTop + card.offsetHeight /2;
     })
     cardTable.insertBefore(draggingCard, next);
 }
@@ -180,13 +183,9 @@ trashArea = document.getElementById("trashArea");
 trashArea.addEventListener("dragover", toTrashMoved);
 trashArea.addEventListener("drop", deletedCard);
 
-trashArea.addEventListener("touchmove", touchMoved);
-trashArea.addEventListener("touchend", deletedCard);
-
-
 
 cardTable.addEventListener("dragover", changeCardTable);
-cardTable.addEventListener("touchmove", changeCardTableTouch);
+//cardTable.addEventListener("touchmove", changeCardTableTouch);
 
 
 // initialize stuff

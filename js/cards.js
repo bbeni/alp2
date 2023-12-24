@@ -122,6 +122,7 @@ function touchEnd(e) {
     } else {
         this.classList.remove("dragging");
     }
+    updateCardsInStorage();
 }
 
 
@@ -185,7 +186,6 @@ trashArea.addEventListener("drop", deletedCard);
 
 
 cardTable.addEventListener("dragover", changeCardTable);
-//cardTable.addEventListener("touchmove", changeCardTableTouch);
 
 
 // initialize stuff

@@ -53,7 +53,7 @@ body {
     padding-right: 1em;
     padding: 0.5em;
     height: 2.6em;
-    aspect-ratio: 9;
+    width: 340px;
     background-color: rgb(255, 255, 255, 0.6);
     display: flex;
     align-items: center;
